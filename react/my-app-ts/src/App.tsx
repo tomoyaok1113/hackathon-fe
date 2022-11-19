@@ -6,7 +6,7 @@ import UserList from './UserList'
 export type User={
   id :string;
   name : string ;
-  point :number ;
+  age :number ;
 };
 
 function App() {
