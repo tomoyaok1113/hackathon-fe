@@ -58,7 +58,7 @@ const Form =() =>{
           value={age}
           onChange={(e) => setAge(e.target.valueAsNumber)}
         ></input>
-        <button onClick={onSubmit}>POST!</button>
+        <button onClick={onSubmit}>POST</button>
       </form>
     </div>   
   );
