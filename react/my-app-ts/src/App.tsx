@@ -16,7 +16,7 @@ function App() {
     try{
       const fetchUser = async() => {
         const response = await fetch(
-          "https://hackathon-be-em2dxrk3vq-uc.a.run.app/:8000/user",
+          "https://hackathon-be-em2dxrk3vq-uc.a.run.app:8000/user",
           {
             method: "GET",
             headers: {
