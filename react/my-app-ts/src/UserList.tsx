@@ -6,13 +6,13 @@ type Props = {
 
 const UserList = (props: Props) => {
     return (
-        <ul>
+        <ol>
             {props.users.map((user) => {
                 return <li className="List" key={user.id}>
                     {user.name},{user.age}
                 </li>;
             })}
-        </ul>
+        </ol>
     );
 }
 
