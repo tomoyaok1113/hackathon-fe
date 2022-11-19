@@ -1,40 +1,66 @@
-import React, {useState} from "react";
+import React from "react";
+import {useState} from "react";
 
-const Form :React.FC = () => {
+const Form =() =>{
+
+  const [name, setName] = useState("");
   const [age, setAge] = useState(0);
-  const onSubmit = async (ev:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    ev.preventDefault();
-    const response = await fetch(
-      "https://react1-5-2-default-rtdb.firebaseio.com/tweets",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    type Data = {
-      [key: string]:{
-        age: number;
-        email: string;
-        name: string;
-      }
+  
+  const onSubmit = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (!name) {
+      alert("Please enter name");
+      return;
     }
-    const data :Data = await response.json();
-    const result = Object.values(data).filter((v) => v.name === "okadatomoya")[0];
-    setAge(result.age+10);
-  };  
-  return (
-    <form style={{ display: "flex", flexDirection: "column" }} > 
-      <label>Age: </label>
-      <input
-        type={"number"}
-        style={{ marginBottom: 20 }}
-        value={age}
-      ></input>
-      <button onClick={onSubmit}> Submit</button>
-    </form>  
-  );
-};
+    if (!age) {
+      alert("Please enter age");
+      return;
+    }
+    if (name.length > 50) {
+      alert("Please enter a name shorter than 50 characters");
+      return;
+    }
+    if (age < 20 || age > 80) {
+      alert("Please enter age between 20 and 80");
+      return;
+    }
+    try {
+      const result = await fetch("http://localhost:8000/user", {
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          age: age,
+        }),
+      });
+      if (!result.ok) {
+        throw Error(`Failed to create user: ${result.status}`);
+      }
 
+      setName("");
+      setAge(0);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <div className="Form">
+      <form style={{ display: "flex", flexDirection: "column" }}>
+        <label>Name: </label>
+        <input
+          type={"text"}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input> 
+        <label>Age: </label>
+        <input
+          type={"number"}
+          value={age}
+          onChange={(e) => setAge(e.target.valueAsNumber)}
+        ></input>
+        <button onClick={onSubmit}>POST</button>
+      </form>
+    </div>   
+  );
+}
 export default Form;
