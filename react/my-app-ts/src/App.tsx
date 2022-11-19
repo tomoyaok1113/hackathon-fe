@@ -1,25 +1,47 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Form from './Form';
+import { useState, useEffect } from "react";
+import Form from './Form'
+import UserList from './UserList'
+
+export type User={
+  id :string;
+  name : string ;
+  age :number ;
+};
 
 function App() {
+  const [users, setUsers] = useState <User[]> ([]);
+
+  useEffect(() => {
+    try{
+      const fetchUser = async() => {
+        const response = await fetch(
+          "http://localhost:8000/user",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const res = await response.json();
+        const data : User[] = Object.values(res)
+        setUsers(data)
+      }
+      fetchUser();
+    } catch (err) {
+      console.error(err);
+    }
+  },[]
+  );
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Form />
+        <h1>User Register</h1>
+      </header>  
+        <Form/>
+        <UserList users={users}/>
     </div>
   );
 }
