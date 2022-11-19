@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>User Register</h1>
+        <h1>User Register!</h1>
       </header>  
         <Form/>
         <UserList users={users}/>
