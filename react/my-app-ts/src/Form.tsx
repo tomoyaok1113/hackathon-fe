@@ -25,7 +25,7 @@ const Form =() =>{
       return;
     }
     try {
-      const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/:8000/user", {
+      const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app:8000/user", {
         method: "POST",
         body: JSON.stringify({
           name: name,
