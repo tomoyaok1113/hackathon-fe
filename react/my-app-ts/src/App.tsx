@@ -1,49 +1,34 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import Form from './Form'
-import UserList from './UserList'
 
-export type User={
-  id :string;
-  name : string ;
-  age :number ;
-};
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [users, setUsers] = useState <User[]> ([]);
+import './App.css';
 
-  useEffect(() => {
-    try{
-      const fetchUser = async() => {
-        const response = await fetch(
-          "https://hackathon-be-em2dxrk3vq-uc.a.run.app/user",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const res = await response.json();
-        const data : User[] = Object.values(res)
-        setUsers(data)
-      }
-      fetchUser();
-    } catch (err) {
-      console.error(err);
-    }
-  },[]
-  );
+import Home from "./routes/Home";
+import Login from "./routes/Login";
+import Register from "./routes/Register";
+import Mypage from "./routes/Mypage"
+import Submit from "./routes/Submit"
+import Confirm from "./routes/Confirm"
+import MemberList from "./routes/MemberList"
+import ReceiveList from "./routes/ReceiveList"
+import SubmitList from "./routes/SubmitList"
 
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>User Register</h1>
-      </header>  
-        <Form/>
-        <UserList users={users}/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={`/`} element={<Home />} />
+        <Route path={`/register/`} element={<Register />} />
+        <Route path={`/login/`} element={<Login />} />
+        <Route path={`/mypage/`} element={<Mypage />} />
+        <Route path={`/submit/`} element={<Submit />} />
+        <Route path={`/confirm/`} element={<Confirm />} />
+        <Route path={`/memberlist/`} element={<MemberList />} />
+        <Route path={`/receivelist/`} element={<ReceiveList />} />
+        <Route path={`/submitlist/`} element={<SubmitList />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

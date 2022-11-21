@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 import React from "react";
 import {useState} from "react";
 
-const Form =() =>{
+const UserForm =() =>{
 
   const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
   
   const onSubmit = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -12,16 +13,8 @@ const Form =() =>{
       alert("Please enter name");
       return;
     }
-    if (!age) {
-      alert("Please enter age");
-      return;
-    }
     if (name.length > 50) {
       alert("Please enter a name shorter than 50 characters");
-      return;
-    }
-    if (age < 20 || age > 80) {
-      alert("Please enter age between 20 and 80");
       return;
     }
     try {
@@ -29,15 +22,12 @@ const Form =() =>{
         method: "POST",
         body: JSON.stringify({
           name: name,
-          age: age,
         }),
       });
       if (!result.ok) {
         throw Error(`Failed to create user: ${result.status}`);
       }
-
       setName("");
-      setAge(0);
     } catch (err) {
       console.error(err);
     }
@@ -52,15 +42,9 @@ const Form =() =>{
           value={name}
           onChange={(e) => setName(e.target.value)}
         ></input> 
-        <label>Age: </label>
-        <input
-          type={"number"}
-          value={age}
-          onChange={(e) => setAge(e.target.valueAsNumber)}
-        ></input>
-        <button onClick={onSubmit}>POST</button>
+        <Button href="/Mypage" onClick={onSubmit}>登録</Button>
       </form>
     </div>   
   );
 }
-export default Form;
+export default UserForm;
