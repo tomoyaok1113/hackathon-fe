@@ -51,7 +51,7 @@ const Submit = () => {
           return;
         }
         if (fromname == toname){
-          alert("送り先は自分以外にしてください");
+          alert("送り先は自分以外にしてください。");
           return;
         }   
         try {

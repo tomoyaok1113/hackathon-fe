@@ -17,7 +17,7 @@ const Register =() =>{
       return;
     }
     if (name.length > 50) {
-      alert("Please enter a name shorter than 50 characters");
+      alert("Please enter a name shorter than 50 characters!");
       return;
     }
     try {
