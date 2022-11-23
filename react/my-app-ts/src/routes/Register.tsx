@@ -13,11 +13,11 @@ const Register =() =>{
   const onSubmit = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!name) {
-      alert("Please enter name");
+      alert("名前を入力してください");
       return;
     }
     if (name.length > 50) {
-      alert("Please enter a name shorter than 50 characters!");
+      alert("Please enter a name shorter than 50 characters");
       return;
     }
     try {

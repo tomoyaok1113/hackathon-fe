@@ -65,7 +65,6 @@ const Submit = () => {
               message: message
             }),
           });
-          console.log(fromname,toname,point,message)
           if (!result.ok) {
             throw Error(`Failed to create message: ${result.status}`);
           }
@@ -88,7 +87,7 @@ const Submit = () => {
           <option key={user.id} value={user.name}>{user.name}</option>
           ))}
           </select>
-          <label>Point: </label>
+          <label>Point: (半角で入力)</label>
           <input
             type={"number"}
             value={point}

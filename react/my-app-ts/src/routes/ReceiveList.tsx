@@ -2,18 +2,19 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 type Receive = {
-  id :string;
-  toname : string ;
-  point :number ;
-  message : string;
+  id :string,
+  fromName : string,
+  point :number,
+  message : string,
 };
 const ReceiveList = () => {
   const [receives, setReceive] = useState <Receive[]> ([]);
     useEffect(() => {
         try{
           const fetchUser = async() => {
-            const response = await fetch(
-                "https://hackathon-be-em2dxrk3vq-uc.a.run.app/message",
+            const toname = sessionStorage.getItem("username");
+            const url = "https://hackathon-be-em2dxrk3vq-uc.a.run.app/message?toname=" + toname;
+            const response = await fetch(url,
               {
                 method: "GET",
                 headers: {
@@ -38,7 +39,7 @@ const ReceiveList = () => {
         <ul>
             {receives.map((receive) => {
                 return <li className="List" key={receive.id}>
-                    {receive.toname},{receive.point},
+                    {receive.fromName},{receive.point},{receive.message}
                 </li>;
             })}
         </ul>
