@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import React from "react";
 import {useState} from "react";
 
-const UserForm =() =>{
+const Register =() =>{
 
-  const [name, setName] = useState("");
-  
+  const [name, setName] = useState <string> ("");
+
+  const username = (e:any)=>{
+    sessionStorage.setItem("username",e.target.name)
+  }
+
   const onSubmit = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!name) {
@@ -22,12 +25,13 @@ const UserForm =() =>{
         method: "POST",
         body: JSON.stringify({
           name: name,
+          point: 0
         }),
       });
       if (!result.ok) {
         throw Error(`Failed to create user: ${result.status}`);
-      }
-      setName("");
+      };
+      window.location.href = "/mypage/"
     } catch (err) {
       console.error(err);
     }
@@ -40,11 +44,11 @@ const UserForm =() =>{
         <input
           type={"text"}
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {setName(e.target.value);sessionStorage.setItem("username",name)}}
         ></input> 
-        <Button href="/Mypage" onClick={onSubmit}>登録</Button>
+        <Button name={name} onClick={(e) => {onSubmit(e) ; username(e)}}>登録</Button>
       </form>
     </div>   
   );
 }
-export default UserForm;
+export default Register;

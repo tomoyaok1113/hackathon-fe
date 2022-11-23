@@ -8,10 +8,7 @@ const Home = () => {
         <Link to={`/login/`}>ログイン</Link>
       </div>
       <div>
-        <Link to={`/register/`}>登録</Link>
-      </div>
-      <div>
-        <Link to={`/mypage/`}>マイページ</Link>
+        <Link to={`/register/`}>新規登録</Link>
       </div>
     </div>
   );

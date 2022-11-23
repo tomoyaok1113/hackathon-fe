@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { NONAME } from 'dns';
 
-const Login = (props:any) => {
+const Login = () => {
   type User = {
-    Id :string,
-    Name: string,
-    Point: number,
+    id :string,
+    name : string,
+    point : number,
   }
   const [users, setUsers] = useState <User[]> ([]);
   useEffect(() => {
@@ -32,18 +30,17 @@ const Login = (props:any) => {
       console.error(err);
     }
   },[]
-  );
-
+  );;
 
   return (
     <div>
-    <h1 className = 'App-header'>ユーザー選択</h1>
-    {users.map((u)=>(
-      <div key={u.Id}>
-      <form>
-      <Button href="myPage" id={u.Id} >{u.Name},{u.Point}</Button>
-      </form>
-      </div>
+    <h1 className = 'App-header'>Unipos</h1>
+    <h1>ユーザー選択</h1>
+
+    {users.map((user)=>(
+      <li key={user.id}>{user.name}
+        <Button href="/mypage/" onClick={()=>{sessionStorage.setItem("username",user.name)}} >選択</Button>
+      </li>
     ))}
     </div>
   )

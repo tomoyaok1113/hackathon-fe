@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export type User = {
+type User = {
     id :string;
     name : string ;
     point :number ;
@@ -13,7 +13,7 @@ const MemberList = () => {
         try{
           const fetchUser = async() => {
             const response = await fetch(
-              "http://localhost:8000/user",
+                "https://hackathon-be-em2dxrk3vq-uc.a.run.app/user",
               {
                 method: "GET",
                 headers: {
