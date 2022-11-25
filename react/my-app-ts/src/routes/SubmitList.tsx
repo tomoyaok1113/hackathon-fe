@@ -23,7 +23,7 @@ const SubmitList = () => {
               }
             );
             const res = await response.json();
-            const data : Submit[] = Object.values(res)
+            const data : Submit[] = Object.values(res);
             setSubmits(data)
           }
           fetchUser();
@@ -39,7 +39,7 @@ const SubmitList = () => {
         <ul>
             {submits.map((submit) => {
                 return <li className="List" key={submit.id}>
-                    {submit.toName},{submit.point},
+                    {submit.toName},{submit.point},{submit.message}
                 </li>;
             })}
         </ul>

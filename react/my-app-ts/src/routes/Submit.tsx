@@ -55,7 +55,7 @@ const Submit = () => {
           return;
         }   
         try {
-          const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/message",
+          const register = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/message",
           {
             method: "POST",
             body: JSON.stringify({
@@ -65,8 +65,23 @@ const Submit = () => {
               message: message
             }),
           });
+          if (!register.ok) {
+            throw Error(`Failed to create message: ${register.status}`);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+        try {
+          const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/point",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              toName: toname,
+              point: point,
+            }),
+          });
           if (!result.ok) {
-            throw Error(`Failed to create message: ${result.status}`);
+            throw Error(`Failed to update point: ${result.status}`);
           }
           window.location.href = "/confirm/"
         } catch (err) {
@@ -111,5 +126,3 @@ const Submit = () => {
 
 export default Submit;
 export {};
-
-   

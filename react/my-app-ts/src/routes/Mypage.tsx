@@ -1,12 +1,45 @@
 import { Link } from "react-router-dom";
+import { useState,useEffect } from "react";
+
+type Point = {
+  point :number,
+};
+
+const username = sessionStorage.getItem("username");
 
 const Mypage = () => {
-  const username = sessionStorage.getItem("username")
+  const [point, setPoint] = useState<Point[]>([]);
+  useEffect(() => {
+    try{
+      const fetchPoint = async() => {
+        const response = await fetch(
+          "https://hackathon-be-em2dxrk3vq-uc.a.run.app/point?username=" + username,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const res = await response.json();
+        const data : Point[]= Object.values(res);
+        setPoint(data)
+      }
+      fetchPoint();
+    } catch (err) {
+        console.error(err);
+    }
+  },[]
+  );
   return (
     <>
       <h1 className = 'App-header'>Unipos</h1>
       <h1>マイページ</h1>
-      <h2>ユーザー：{username}</h2>
+      {point.map((point) => {
+                return <h2 className="List" key={point.point}>
+                    貢献ポイント：{point.point}
+                </h2>;
+            })}
       <div>
         <Link to={`/submit/`}>貢献を送る</Link>
       </div>
