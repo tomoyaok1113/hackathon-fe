@@ -36,6 +36,7 @@ const ReceiveList = () => {
         <div>
         <h1 className = 'App-header'>Unipos</h1>
         <h1>受信一覧</h1>
+        <p>送信先,　ポイント,　メッセージ</p>
         <ul>
             {receives.map((receive) => {
                 return <li className="List" key={receive.id}>

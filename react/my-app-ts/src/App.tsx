@@ -12,6 +12,7 @@ import Confirm from "./routes/Confirm"
 import MemberList from "./routes/MemberList"
 import ReceiveList from "./routes/ReceiveList"
 import SubmitList from "./routes/SubmitList"
+import Delete from "./routes/Delete"
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path={`/memberlist/`} element={<MemberList />} />
         <Route path={`/receivelist/`} element={<ReceiveList />} />
         <Route path={`/submitlist/`} element={<SubmitList />} />
+        <Route path={`/delete/`} element={<Delete />} />
       </Routes>
     </BrowserRouter>
   );

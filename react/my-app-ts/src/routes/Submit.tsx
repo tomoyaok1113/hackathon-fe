@@ -77,7 +77,7 @@ const Submit = () => {
             method: "POST",
             body: JSON.stringify({
               toName: toname,
-              point: point,
+              point:point
             }),
           });
           if (!result.ok) {
@@ -98,6 +98,7 @@ const Submit = () => {
           <p>From: {fromname}</p>
           <label>To: </label>
           <select name="toname" onChange={(e)=>setToName(e.target.value)}>
+          <option value="/">選択してください</option>
           {users.map((user)=>(
           <option key={user.id} value={user.name}>{user.name}</option>
           ))}
