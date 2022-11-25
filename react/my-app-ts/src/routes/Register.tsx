@@ -17,7 +17,7 @@ const Register =() =>{
       return;
     }
     if (name.length > 50) {
-      alert("Please enter a name shorter than 50 characters");
+      alert("名前は50文字以内にしてください");
       return;
     }
     try {
