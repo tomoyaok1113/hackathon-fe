@@ -35,9 +35,10 @@ const Mypage = () => {
     <>
       <h1 className = 'App-header'>Unipos</h1>
       <h1>マイページ</h1>
+      <h1>ユーザー名：{username}</h1>
       {point.map((point) => {
                 return <h2 className="List" key={point.point}>
-                    貢献ポイント：{point.point}
+                    貢献ポイント：{point.point} points
                 </h2>;
             })}
       <div>
