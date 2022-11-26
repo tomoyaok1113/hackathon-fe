@@ -40,7 +40,7 @@ const ReceiveList = () => {
         <ul>
             {receives.map((receive) => {
                 return <li className="List" key={receive.id}>
-                    {receive.fromName},{receive.point},{receive.message}
+                    {receive.fromName},　{receive.point},　{receive.message}
                 </li>;
             })}
         </ul>
