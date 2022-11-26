@@ -95,7 +95,7 @@ const Submit = () => {
       <h1>貢献を送る</h1>
       <div className="Form">
         <form style={{ display: "flex", flexDirection: "column" }}>
-          <p>From: {fromname}</p>
+          <h3>From: {fromname}</h3>
           <label>To: </label>
           <select name="toname" onChange={(e)=>setToName(e.target.value)}>
           <option value="/">選択してください</option>
@@ -103,13 +103,13 @@ const Submit = () => {
           <option key={user.id} value={user.name}>{user.name}</option>
           ))}
           </select>
-          <label>Point: (半角で入力)</label>
+          <label>ポイント: (半角で入力)</label>
           <input
             type={"number"}
             value={point}
             onChange={(e) => setPoint(e.target.valueAsNumber)}
           ></input>
-          <label>Message: </label>
+          <label>メッセージ: </label>
           <input
             type={"message"}
             value={message}

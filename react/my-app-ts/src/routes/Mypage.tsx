@@ -35,12 +35,13 @@ const Mypage = () => {
     <>
       <h1 className = 'App-header'>Unipos</h1>
       <h1>マイページ</h1>
-      <h1>ユーザー名：{username}</h1>
+      <h2>ユーザー名：{username}</h2>
       {point.map((point) => {
                 return <h2 className="List" key={point.point}>
                     貢献ポイント：{point.point} points
                 </h2>;
             })}
+      <div className='element'>    
       <div>
         <Link to={`/submit/`}>貢献を送る</Link>
       </div>
@@ -55,6 +56,7 @@ const Mypage = () => {
       </div>
       <div>
         <Link to={`/`} onClick={sessionStorage.clear}>ログアウト</Link>
+      </div>
       </div>
     </>
   );

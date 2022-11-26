@@ -12,6 +12,8 @@ import Confirm from "./routes/Confirm"
 import MemberList from "./routes/MemberList"
 import ReceiveList from "./routes/ReceiveList"
 import SubmitList from "./routes/SubmitList"
+import Fix from "./routes/Fix"
+import Fixmessage from "./routes/Fixmessage"
 import Delete from "./routes/Delete"
 
 const App = () => {
@@ -28,6 +30,8 @@ const App = () => {
         <Route path={`/receivelist/`} element={<ReceiveList />} />
         <Route path={`/submitlist/`} element={<SubmitList />} />
         <Route path={`/delete/`} element={<Delete />} />
+        <Route path={`/fix/`} element={<Fix />} />
+        <Route path={`/fixmessage/`} element={<Fixmessage />} />
       </Routes>
     </BrowserRouter>
   );
