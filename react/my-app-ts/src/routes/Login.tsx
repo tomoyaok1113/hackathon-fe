@@ -38,7 +38,7 @@ const Login = () => {
     <h1>ユーザー選択</h1>
 
     {users.map((user)=>(
-      <li key={user.id}>{user.name}
+      <li className='element' key={user.id}>{user.name}
         <Button href="/mypage/" onClick={()=>{sessionStorage.setItem("username",user.name)}} >選択</Button>
       </li>
     ))}
