@@ -33,22 +33,7 @@ const SubmitList = () =>{
         }
   },[]
   );
-  const onClickFix = async (id :string) => {
-    try {
-      const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/messagefix",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          id:id
-        }),
-      });
-      if (!result.ok) {
-        throw Error(`Failed to fix message: ${result.status}`);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  
   const onClickDel = async (id :string,toname:string,point:number) => {
     try {
       const result = await fetch("https://hackathon-be-em2dxrk3vq-uc.a.run.app/messagedelete",
@@ -77,7 +62,7 @@ const SubmitList = () =>{
             {submits.map((submit) => {
                 return <li className="List" key={submit.id}>
                   {submit.toName},　{submit.point},　{submit.message}
-                  <Button onClick={() => onClickFix(submit.id)}>編集</Button>
+                  <Button href="/fixmessage/" onClick={() => {sessionStorage.setItem("messageid",submit.id);sessionStorage.setItem("fixname",submit.toName)}}>編集</Button>
                   <Button href="/delete/" onClick={() => onClickDel(submit.id,submit.toName,submit.point)}>削除</Button>
                 </li>;
             })}

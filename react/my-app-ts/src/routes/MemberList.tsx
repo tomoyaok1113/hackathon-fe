@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 type User = {
-    id :string;
-    name : string ;
-    point :number ;
+    id :string,
+    name : string,
+    point :number,
   };
 
 const MemberList = () => {
@@ -23,6 +23,7 @@ const MemberList = () => {
             );
             const res = await response.json();
             const data : User[] = Object.values(res)
+            console.log(data);
             setUsers(data)
           }
           fetchUser();
@@ -38,7 +39,7 @@ const MemberList = () => {
         <ul>
             {users.map((user) => {
                 return <li className="List" key={user.id}>
-                    {user.name},{user.point}
+                    {user.name},　{user.point}
                 </li>;
             })}
         </ul>
